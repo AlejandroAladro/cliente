@@ -1,0 +1,27 @@
+name: pr-develop
+on:
+  push:
+    branches:
+      - feature/*
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: Auto Pull Request
+          title: Changes by Pull Request Develop action
+          body: Auto-created Pull Request
+          branch: ${{ github.ref }}
+          base: develop
+          labels: feature
+          delete-branch: true

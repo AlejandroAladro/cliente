@@ -1,0 +1,48 @@
+version: "3.5"
+services:
+  web:
+    image: ${WEB_HOST}-odoo
+    build:
+      context: .
+      args:
+        - WEB_IMAGE_TAG=${WEB_IMAGE_TAG}
+    env_file:
+      - .env
+    tty: true
+    container_name: ${WEB_HOST}-odoo
+    depends_on:
+      - db
+    ports:
+      - "${WEB_PORT}:8069"
+      - "${LONGPOLLING_PORT}:8072"
+      - "${WEB_DEBUG}:5678"
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./dependencies:/opt/dependencies
+      # - ./enterprise-addons:/mnt/enterprise-addons
+      - ./oca:/mnt/oca
+      # - ./third-party-addons:/mnt/third-party-addons
+      - ./extra-addons:/mnt/extra-addons
+    environment:
+      - DEBUG=${DEBUG}
+    command: --dev xml
+
+  db:
+    image: ${DB_IMAGE}:${DB_TAG}
+    container_name: ${WEB_HOST}-db
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_PASSWORD=${DB_PASSWD}
+      - POSTGRES_USER=${DB_USER}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+
+volumes:
+  odoo-db-data:
+    name: ${WEB_HOST}-db_data
+  odoo-web-data:
+    name: ${WEB_HOST}-odoo_data

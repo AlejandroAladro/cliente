@@ -1,0 +1,173 @@
+# pip install PyYAML
+# Define your OCA modules like below:
+
+account-financial-reporting:
+  revision: last
+  modules:
+    - account_tax_balance
+    - account_financial_report
+    - mis_builder_cash_flow
+
+account-fiscal-rule:
+  revision: last
+  modules:
+    - l10n_eu_oss
+    - account_fiscal_position_partner_type
+
+account-financial-tools:
+  revision: last
+  modules:
+    - account_move_name_sequence
+    - account_asset_management
+    - account_chart_update
+    - account_fiscal_position_vat_check
+    - account_invoice_constraint_chronology
+    - account_lock_date_update
+    - account_usability
+    - account_journal_general_sequence
+
+account-invoicing:
+  revision: last
+  modules:
+    - account_invoice_refund_link
+    - account-invoicing
+    - account_invoice_fiscal_position_update
+    - account_menu_invoice_refund
+    - account_invoice_check_total
+
+account-reconcile:
+  revision: last
+  modules:
+    - account_reconcile_oca
+    - account_statement_base
+    - account_move_line_reconcile_manual
+
+account-payment:
+  revision: last
+  modules:
+    - account_due_list
+    - account_due_list_payment_mode
+    - account_payment_return
+    - account_payment_return_import
+    - account_payment_return_import_iso20022
+
+bank-payment:
+  revision: last
+  modules:
+    - account_payment_partner
+    - account_payment_mode
+    - account_payment_order
+    - account_banking_sepa_direct_debit
+    - account_banking_mandate
+    - account_banking_pain_base
+    - account_payment_purchase
+    - account_payment_sale
+    - account_banking_mandate_sale
+    - account_banking_sepa_credit_transfer
+    - account_banking_sepa_direct_debit
+
+bank-statement-import:
+  revision: last
+  modules:
+    - account_statement_import
+    - account_statement_import_base
+    - account_statement_import_file
+    - account_statement_import_sheet_file
+
+community-data-files:
+  revision: last
+  modules:
+    - base_bank_from_iban
+    - base_iso3166
+
+connector:
+  revision: last
+  modules:
+    - component
+    - component_event
+
+edi:
+  revision: last
+  modules:
+    - base_edi
+    - edi_oca
+    - edi_account_oca
+    - edi_exchange_template_oca
+
+intrastat-extrastat:
+  revision: last
+  modules:
+    - intrastat_base
+    - intrastat_product
+    - product_harmonized_system
+
+l10n-spain:
+  revision: last
+  modules:
+    - "*" # all modules
+
+mis-builder:
+  revision: last
+  modules:
+    - mis_builder
+
+partner-contact:
+  revision: last
+  modules:
+    - base_location
+    - base_location_geonames_import
+    - base_location_nuts
+
+queue:
+  revision: last
+  modules:
+    - queue_job
+
+reporting-engine:
+  revision: last
+  modules:
+    - report_xlsx
+    - report_xml
+    - report_qweb_parameter
+    - report_xlsx_helper
+
+server-brand:
+  revision: last
+  modules:
+    - portal_odoo_debranding
+    - remove_odoo_enterprise
+
+server-tools:
+  revision: last
+  modules:
+    - auto_backup
+    - dbfilter_from_header
+
+server-ux:
+  revision: last
+  modules:
+    - date_range
+    - server_action_mass_edit
+
+social:
+  revision: last
+  modules:
+    - mail_debrand
+
+stock-logistics-workflow:
+  revision: last
+  modules:
+    - stock_picking_invoice_link
+
+web:
+  revision: last
+  modules:
+    - web_dialog_size
+    - web_decimal_numpad_dot
+    - web_environment_ribbon
+    - web_no_bubble
+    - web_responsive
+    - web_theme_classic
+    - web_chatter_position
+    - web_advanced_search
+    - web_dark_mode

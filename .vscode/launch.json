@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: conexión remota",
+      "type": "python",
+      "request": "attach",
+      "connect": {
+        "host": "localhost",
+        "port": 8073
+      },
+      "pathMappings": [
+        {
+          "localRoot": "${workspaceFolder}/extra-addons",
+          "remoteRoot": "/mnt/extra-addons"
+        },
+        {
+          "localRoot": "${workspaceFolder}/oca",
+          "remoteRoot": "/mnt/oca"
+        },
+        {
+          "localRoot": "${workspaceFolder}/third-party-addons",
+          "remoteRoot": "/mnt/third-party-addons"
+        },
+        {
+          "localRoot": "${workspaceFolder:odoo16}/addons",
+          "remoteRoot": "/usr/lib/python3/dist-packages/odoo/addons"
+        },
+        {
+          "localRoot": "${workspaceFolder:odoo16}/odoo",
+          "remoteRoot": "/usr/lib/python3/dist-packages/odoo"
+        }
+      ],
+      "logToFile": true,
+      "justMyCode": false
+    }
+  ]
+}

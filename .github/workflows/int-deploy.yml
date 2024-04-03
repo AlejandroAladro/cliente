@@ -1,0 +1,40 @@
+name: int-deploy
+
+on:
+  push:
+    branches: [develop]
+
+jobs:
+  int-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy Integration Server
+        uses: appleboy/ssh-action@master
+        env:
+          REPO_NAME: ${{ github.repository }}
+          REPO_URL: git@github.com:${{ github.repository }}.git
+        with:
+          host: ${{ secrets.INT_HOST }}
+          username: ${{ secrets.INT_USERNAME }}
+          password: ${{ secrets.INT_PASSWORD }}
+          key: ${{ secrets.GH_TOKEN }} # private key rsa
+          envs: REPO_NAME,REPO_URL
+          script: |
+            cd ${{ secrets.INT_ODOO_PATH }}
+
+            if [ -d ${REPO_NAME#*/} ]; then
+              cd ${REPO_NAME#*/}
+              git checkout .
+              git checkout develop -f
+              git pull
+              invoke upload-oca
+              invoke pip-install
+              docker-compose restart
+            else
+              git clone $REPO_URL
+              cd ${REPO_NAME#*/}
+              invoke upload-oca
+              docker-compose up -d
+              invoke pip-install
+            fi
